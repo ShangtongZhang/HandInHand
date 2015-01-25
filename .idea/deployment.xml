@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="HandInHand">
+    <serverData>
+      <paths name="HandInHand">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/www/html/HandInHand" local="$PROJECT_DIR$" web="HandInHand" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
