@@ -50,8 +50,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP5" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="187" />
-    <option name="y" value="36" />
+    <option name="x" value="160" />
+    <option name="y" value="39" />
     <option name="width" value="1400" />
     <option name="height" value="770" />
   </component>
@@ -155,7 +155,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="187" y="36" width="1400" height="770" extended-state="0" />
+    <frame x="160" y="39" width="1400" height="770" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32952926" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
