@@ -17,7 +17,7 @@ class medoo
 
 	protected $username = 'root';
 
-	protected $password = 'root';
+	protected $password = '302536811';
 
 	// For SQLite
 	protected $database_file = '';

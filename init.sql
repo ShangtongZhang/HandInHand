@@ -5,15 +5,15 @@ CREATE TABLE `HandInHand`.`topic` (
 
 CREATE TABLE `HandInHand`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NOT NULL,
-  `nickname` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `score1` INT NOT NULL DEFAULT 0,
-  `portrait` VARCHAR(45) NULL,
-  `score2` INT NOT NULL DEFAULT 0,
-  `remark` VARCHAR(45) NULL,
-  `male` INT NOT NULL DEFAULT 0,
-  `signature` VARCHAR(100) NULL,
+  `username` VARCHAR(45),
+  `nickname` VARCHAR(45),
+  `password` VARCHAR(45),
+  `score1` INT,
+  `portrait` VARCHAR(45),
+  `score2` INT,
+  `remark` VARCHAR(45),
+  `male` INT,
+  `signature` VARCHAR(100),
   PRIMARY KEY (`id`));
 
 CREATE TABLE `HandInHand`.`question` (
