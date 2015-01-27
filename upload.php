@@ -15,6 +15,6 @@ fclose($config);
 $fileName = $fileNo . '_' . $_FILES['file']['name'];
 move_uploaded_file($_FILES['file']['tmp_name'], './upload/' . $fileName);
 
-echo $fileName;
+echo 'http://121.199.64.117:8888/HandInHand/upload/' . $fileName;
 
 ?>
