@@ -40,13 +40,14 @@ INSERT INTO `HandInHand`.`topic` (`topic`) VALUES ('Emotion');
 
 CREATE TABLE `HandInHand`.`answer` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `content` VARCHAR(200) NOT NULL,
-  `score1` INT NOT NULL DEFAULT 0,
-  `score2` INT NOT NULL DEFAULT 0,
-  `uid` INT NOT NULL,
-  `qid` INT NOT NULL,
-  `createdTime` VARCHAR(45) NOT NULL,
-  `picture` VARCHAR(45) NULL,
+  `content` VARCHAR(200),
+  `score1` INT ,
+  `score2` INT ,
+  `uid` INT ,
+  `qid` INT ,
+  `createdTime` VARCHAR(45) ,
+  `picture` VARCHAR(45) ,
+  `parentAid` INT,
   PRIMARY KEY (`id`));
 
 CREATE TABLE `HandInHand`.`user_topic` (
@@ -60,3 +61,13 @@ CREATE TABLE `HandInHand`.`favorite` (
   `uid` INT NOT NULL,
   `qid` INT NOT NULL,
   PRIMARY KEY (`id`));
+
+CREATE TABLE `HandInHand`.`comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `uid` INT NULL,
+  `createdTime` INT NULL,
+  `parentCid` INT NULL,
+  `content` VARCHAR(200) NULL,
+  `aid` INT NULL,
+  PRIMARY KEY (`id`));
+
