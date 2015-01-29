@@ -15,5 +15,8 @@ if ($_GET['op'] == 'add') {
     $entries = $db->select('comment', '*', array('aid' => $_GET['aid'],
         'ORDER' => 'createdTime'));
     echo json_encode($entries);
+} elseif ($_GET['op'] == 'getByCid') {
+    $entries = $db->select('comment', '*', array('id' => $_GET['cid']));
+    echo json_encode($entries);
 }
 ?>
