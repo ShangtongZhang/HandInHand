@@ -16,6 +16,9 @@ if ($_GET['op'] == 'add') {
     $entries = $db->select('answer', '*', array('qid' => $_GET['qid'],
         'ORDER' => 'createdTime DESC'));
     echo json_encode($entries);
+} elseif ($_GET['op'] == 'getByAid') {
+    $entries = $db->select('answer', '*', array('id' => $_GET['aid']));
+    echo json_encode($entries);
 }
 
 ?>

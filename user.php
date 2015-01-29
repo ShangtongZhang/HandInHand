@@ -14,7 +14,6 @@ if ($_GET['op'] == 'register') {
 } elseif ($_GET['op'] == 'count') {
     echo $db->count('user', array('username' => $_GET['username']));
 } elseif ($_GET['op'] == 'authenticate') {
-    var_dump($_GET);
     echo $db->count('user',
         array('AND' =>
             array('username' => $_GET['username'],
@@ -37,6 +36,9 @@ if ($_GET['op'] == 'register') {
 } elseif ($_GET['op'] == 'getAnswers') {
     $entries = $db->select('answer', '*', array('uid' => $_GET['uid'],
         'ORDER => createdTime'));
+    echo json_encode($entries);
+} elseif ($_GET['op'] == 'getByUid') {
+    $entries = $db->select('user', '*', array('id' => $_GET['uid']));
     echo json_encode($entries);
 }
 

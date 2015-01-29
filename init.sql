@@ -71,3 +71,15 @@ CREATE TABLE `HandInHand`.`comment` (
   `aid` INT NULL,
   PRIMARY KEY (`id`));
 
+CREATE TABLE `HandInHand`.`favorite_question` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `uid` INT NOT NULL,
+  `qid` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `HandInHand`.`favorite_answer` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `uid` INT NOT NULL,
+  `aid` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
