@@ -17,8 +17,8 @@ function getByQid($qid) {
     return $question;
 }
 
-if ($_GET['op'] == 'add') {
-    $entry = json_decode($_GET['entry'], true);
+if ($_POST['op'] == 'add') {
+    $entry = json_decode($_POST['entry'], true);
     $topics = $entry['topics'];
     unset($entry['id']);
     unset($entry['topics']);
@@ -28,8 +28,8 @@ if ($_GET['op'] == 'add') {
             'tid' => $tid));
     }
     echo $qid;
-} elseif ($_GET['op'] == 'update') {
-    $entry = json_decode($_GET['entry'], true);
+} elseif ($_POST['op'] == 'update') {
+    $entry = json_decode($_POST['entry'], true);
     $topics = $entry['topics'];
     $db->delete('question_topic', array('qid' => $entry['id']));
     foreach ($topics as $ind => $tid) {
@@ -38,20 +38,20 @@ if ($_GET['op'] == 'add') {
     }
     unset($entry['topics']);
     echo $db->update('question', $entry, array('id' => $entry['id']));
-} elseif ($_GET['op'] == 'delete') {
-    echo $db->delete('question', array('id' => $_GET['qid']));
-} elseif ($_GET['op'] == 'getByTopic') {
+} elseif ($_POST['op'] == 'delete') {
+    echo $db->delete('question', array('id' => $_POST['qid']));
+} elseif ($_POST['op'] == 'getByTopic') {
     $qids = $db->select('question', array('[>]question_topic' =>
         array('id' => 'qid')), array('question.id'),
-        array('question_topic.tid' => $_GET['tid'],
+        array('question_topic.tid' => $_POST['tid'],
             'ORDER' => 'createdTime DESC'));
     $questions = array();
     foreach ($qids as $ind => $qid) {
         array_push($questions, getByQid($qid['id']));
     }
     echo json_encode($questions);
-} elseif ($_GET['op'] == 'getByQid') {
-    echo json_encode(getByQid($_GET['qid']));
+} elseif ($_POST['op'] == 'getByQid') {
+    echo json_encode(getByQid($_POST['qid']));
 }
 
 ?>

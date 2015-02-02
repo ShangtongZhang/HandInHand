@@ -2,21 +2,21 @@
 require_once 'medoo.php';
 $db = new medoo();
 
-if ($_GET['op'] == 'add') {
-    $entry = json_decode($_GET['entry'], true);
+if ($_POST['op'] == 'add') {
+    $entry = json_decode($_POST['entry'], true);
     unset($entry['id']);
     echo $db->insert('comment', $entry);
-} elseif ($_GET['op'] == 'delete') {
-    echo $db->delete('comment', array('id' => $_GET['cid']));
-} elseif ($_GET['op'] == 'update') {
-    $entry = json_decode($_GET['entry'], true);
+} elseif ($_POST['op'] == 'delete') {
+    echo $db->delete('comment', array('id' => $_POST['cid']));
+} elseif ($_POST['op'] == 'update') {
+    $entry = json_decode($_POST['entry'], true);
     echo $db->update('comment', $entry, array('id' => $entry['id']));
-} elseif ($_GET['op'] == 'getByAid') {
-    $entries = $db->select('comment', '*', array('aid' => $_GET['aid'],
+} elseif ($_POST['op'] == 'getByAid') {
+    $entries = $db->select('comment', '*', array('aid' => $_POST['aid'],
         'ORDER' => 'createdTime'));
     echo json_encode($entries);
-} elseif ($_GET['op'] == 'getByCid') {
-    $entries = $db->select('comment', '*', array('id' => $_GET['cid']));
+} elseif ($_POST['op'] == 'getByCid') {
+    $entries = $db->select('comment', '*', array('id' => $_POST['cid']));
     echo json_encode($entries);
 }
 ?>

@@ -4,7 +4,7 @@ require_once 'medoo.php';
 require_once 'util.php';
 $db = new medoo();
 
-switch ($_GET['op']) {
+switch ($_POST['op']) {
     case 'showScore1Status':
         echo showStatus($db, 'user_answer_score1', 'uid', 'aid');
         break;
@@ -18,8 +18,8 @@ switch ($_GET['op']) {
         if ($status == 1) {
             $delta = 1;
         }
-        $db->update('answer', array('score1[+]' => $delta), array('id' => $_GET['aid']));
-        $uids = $db->select('answer', 'uid', array('id' => $_GET['aid']));
+        $db->update('answer', array('score1[+]' => $delta), array('id' => $_POST['aid']));
+        $uids = $db->select('answer', 'uid', array('id' => $_POST['aid']));
         $db->update('user', array('score1[+]' => $delta), array('id' => $uids[0]));
         break;
     case 'toggleScore2':
@@ -29,8 +29,8 @@ switch ($_GET['op']) {
         if ($status == 1) {
             $delta = 1;
         }
-        $db->update('answer', array('score2[+]' => $delta), array('id' => $_GET['aid']));
-        $uids = $db->select('answer', 'uid', array('id' => $_GET['aid']));
+        $db->update('answer', array('score2[+]' => $delta), array('id' => $_POST['aid']));
+        $uids = $db->select('answer', 'uid', array('id' => $_POST['aid']));
         $db->update('user', array('score2[+]' => $delta), array('id' => $uids[0]));
         break;
 }

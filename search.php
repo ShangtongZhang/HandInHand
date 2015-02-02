@@ -3,7 +3,7 @@
 require_once 'medoo.php';
 $db = new medoo();
 
-$pattern = $_GET['pattern'];
+$pattern = $_POST['pattern'];
 $results = array();
 
 $entries = $db->select('question', 'id', array('LIKE' =>
