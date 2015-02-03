@@ -17,6 +17,6 @@ if ($_POST['op'] == 'add') {
     echo json_encode($entries);
 } elseif ($_POST['op'] == 'getByCid') {
     $entries = $db->select('comment', '*', array('id' => $_POST['cid']));
-    echo json_encode($entries);
+    echo json_encode($entries[0]);
 }
 ?>

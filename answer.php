@@ -18,7 +18,7 @@ if ($_POST['op'] == 'add') {
     echo json_encode($entries);
 } elseif ($_POST['op'] == 'getByAid') {
     $entries = $db->select('answer', '*', array('id' => $_POST['aid']));
-    echo json_encode($entries);
+    echo json_encode($entries[0]);
 }
 
 ?>

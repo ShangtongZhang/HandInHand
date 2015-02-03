@@ -43,7 +43,7 @@ if ($_POST['op'] == 'register') {
     echo json_encode($entries);
 } elseif ($_POST['op'] == 'getByUid') {
     $entries = $db->select('user', '*', array('id' => $_POST['uid']));
-    echo json_encode($entries);
+    echo json_encode($entries[0]);
 }
 
 ?>
