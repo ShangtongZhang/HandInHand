@@ -52,6 +52,16 @@ if ($_POST['op'] == 'add') {
     echo json_encode($questions);
 } elseif ($_POST['op'] == 'getByQid') {
     echo json_encode(getByQid($_POST['qid']));
+} elseif ($_POST['op'] == 'getHotest') {
+    $qids = $db->select('question', array('id'), array(
+        'ORDER' => 'score1 DESC',
+        'LIMIT' => 20
+    ));
+    $questions = array();
+    foreach ($qids as $ind => $qid) {
+        array_push($questions, getByQid($qid['id']));
+    }
+    echo json_encode($questions);
 }
 
 ?>

@@ -28,6 +28,15 @@ if ($_POST['op'] == 'showQuestionStatus') {
     echo listEntries($db, 'favorite_answer', 'uid', 'aid');
 } elseif ($_POST['op'] == 'listUsers') {
     echo listEntries($db, 'favorite_user', 'uid', 'uid2');
+} elseif ($_POST['op'] == 'listFollowers') {
+    $entries = $db->select('favorite_user', '*', array('uid2' => $_POST['uid']));
+    $ids = array();
+    foreach ($entries as $ind => $entry) {
+        array_push($ids, $entry['uid']);
+    }
+    echo json_encode($ids);
+} elseif ($_POST['op'] == 'countFollowers') {
+    echo $db->count('favorite_user', array('uid2' => $_POST['uid']));
 }
 
 ?>
