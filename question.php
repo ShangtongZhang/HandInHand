@@ -62,6 +62,20 @@ if ($_POST['op'] == 'add') {
         array_push($questions, getByQid($qid['id']));
     }
     echo json_encode($questions);
+} elseif ($_POST['op'] == 'getLatest') {
+    $db->delete('question', array('AND' => array(
+        'expireTime[<]' => 1000 * time(),
+        'expireTime[!]' => 0
+    )));
+    $qids = $db->select('question', array('id'), array(
+        'ORDER' => 'id DESC',
+        'LIMIT' => $_POST['count']
+    ));
+    $questions = array();
+    foreach ($qids as $ind => $qid) {
+        array_push($questions, getByQid($qid['id']));
+    }
+    echo json_encode($questions);
 }
 
 ?>

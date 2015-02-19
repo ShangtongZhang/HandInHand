@@ -18,5 +18,7 @@ if ($_POST['op'] == 'add') {
 } elseif ($_POST['op'] == 'getByCid') {
     $entries = $db->select('comment', '*', array('id' => $_POST['cid']));
     echo json_encode($entries[0]);
+} elseif ($_POST['op'] == 'countComments') {
+    echo $db->count('comment', array('aid' => $_POST['aid']));
 }
 ?>
