@@ -1,7 +1,9 @@
 <?php
 
 require_once 'medoo.php';
+require_once 'util.php';
 $db = new medoo();
+filterQuestionsExpired($db);
 
 function getByQid($qid) {
     $db = new medoo();
@@ -14,6 +16,10 @@ function getByQid($qid) {
         array_push($tids, $topic['tid']);
     }
     $question['topics'] = $tids;
+    $user = $db->select('user', '*', array('id' => $question['uid']));
+    $user = $user[0];
+    $question['nickname'] = $user['nickname'];
+    $question['userHead'] = $user['portrait'];
     return $question;
 }
 
@@ -53,24 +59,22 @@ if ($_POST['op'] == 'add') {
 } elseif ($_POST['op'] == 'getByQid') {
     echo json_encode(getByQid($_POST['qid']));
 } elseif ($_POST['op'] == 'getHotest') {
-    $qids = $db->select('question', array('id'), array(
-        'ORDER' => 'score1 DESC',
-        'LIMIT' => 20
-    ));
+    $qids = $db->select('question', array('[>]question_topic' =>
+        array('id' => 'qid')), array('question.id'),
+        array('question_topic.tid[!]' => -1,
+            'ORDER' => 'score1 DESC',
+            'LIMIT' => 20));
     $questions = array();
     foreach ($qids as $ind => $qid) {
         array_push($questions, getByQid($qid['id']));
     }
     echo json_encode($questions);
 } elseif ($_POST['op'] == 'getLatest') {
-    $db->delete('question', array('AND' => array(
-        'expireTime[<]' => 1000 * time(),
-        'expireTime[!]' => 0
-    )));
-    $qids = $db->select('question', array('id'), array(
-        'ORDER' => 'id DESC',
-        'LIMIT' => $_POST['count']
-    ));
+    $qids = $db->select('question', array('[>]question_topic' =>
+        array('id' => 'qid')), array('question.id'),
+        array('question_topic.tid[!]' => -1,
+            'ORDER' => 'createdTime DESC',
+            'LIMIT' => $_POST['count']));
     $questions = array();
     foreach ($qids as $ind => $qid) {
         array_push($questions, getByQid($qid['id']));

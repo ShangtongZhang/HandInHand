@@ -18,14 +18,14 @@ $entries = $db->select('answer', 'id', array('LIKE' =>
     array('content' => $pattern)));
 $aids = array();
 foreach ($entries as $ind => $entry) {
-    array_push($aids, $entry['id']);
+    array_push($aids, $entry);
 }
 
 $entries = $db->select('comment', 'id', array('LIKE' =>
     array('content' => $pattern)));
 $cids = array();
 foreach ($entries as $ind => $entry) {
-    array_push($cids, $entry['id']);
+    array_push($cids, $entry);
 }
 
 array_push($results, $qids);

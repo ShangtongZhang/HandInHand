@@ -1,5 +1,17 @@
 <?php
 
+function filterQuestionsExpired(&$db) {
+    $qids = $db->select('question', 'id', array('AND' => array(
+        'expireTime[<]' => 1000 * time(),
+        'expireTime[!]' => 0
+    )));
+    foreach($qids as $ind => $qid) {
+        $db->delete('question_topic', array('qid' => $qid));
+        $db->insert('question_topic', array('qid' => $qid,
+            'tid' => '-1'));
+    }
+}
+
 function showStatus(&$db, $table, $id1, $id2) {
     $status = $db->count($table, array('AND' =>
             array($id1 => $_POST[$id1],
