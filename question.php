@@ -64,6 +64,7 @@ if ($_POST['op'] == 'add') {
         array('question_topic.tid[!]' => -1,
             'ORDER' => 'score1 DESC',
             'LIMIT' => 20));
+    $qids = deDuplicate($qids);
     $questions = array();
     foreach ($qids as $ind => $qid) {
         array_push($questions, getByQid($qid['id']));
@@ -75,6 +76,7 @@ if ($_POST['op'] == 'add') {
         array('question_topic.tid[!]' => -1,
             'ORDER' => 'createdTime DESC',
             'LIMIT' => $_POST['count']));
+    $qids = deDuplicate($qids);
     $questions = array();
     foreach ($qids as $ind => $qid) {
         array_push($questions, getByQid($qid['id']));

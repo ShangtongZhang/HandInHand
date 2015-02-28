@@ -1,5 +1,22 @@
 <?php
 
+function deDuplicate($ids) {
+    $uniqueIds = array();
+    foreach($ids as $ind1 => $id1) {
+        $isDuplicate = false;
+        foreach($uniqueIds as $ind2 => $id2) {
+            if ($id1 == $id2) {
+                $isDuplicate = true;
+                break;
+            }
+        }
+        if (!$isDuplicate) {
+            array_push($uniqueIds, $id1);
+        }
+    }
+    return $uniqueIds;
+}
+
 function filterQuestionsExpired(&$db) {
     $qids = $db->select('question', 'id', array('AND' => array(
         'expireTime[<]' => 1000 * time(),
